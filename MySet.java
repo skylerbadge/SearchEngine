@@ -14,19 +14,19 @@ public class MySet<T>
 	{
 		return setobj.isMember(o);
 	}
-	public void addElement(T element) throws Exception
+	public void addElement(T element) //throws Exception
 	{
 		if(!setobj.isMember(element))
 			setobj.addAtHead(element);
-		else
-			throw new Exception("Element already exists in set");
+		else;
+			//throw new Exception("Element already exists in set");
 	}
-	public void Delete(T element) throws Exception
+	public void Delete(T element) //throws Exception
 	{
 		if(setobj.isMember(element))
 			setobj.deleteAtIndex(setobj.findob(element));
-		else
-			throw new Exception("Element does not exist in set");
+		else;
+			//throw new Exception("Element does not exist in set");
 	}
 	public MySet<T> union(MySet<T> otherSet)
 	{
