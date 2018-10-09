@@ -1,7 +1,7 @@
 public class MySet<T>
 {
 	MyLinkedList<T> setobj;
-
+        
 	public MySet()
 	{
             setobj = new MyLinkedList<T>();
@@ -19,14 +19,14 @@ public class MySet<T>
 		if(!setobj.isMember(element))
 			setobj.addAtHead(element);
 		else
-			throw new Exception();
+			throw new Exception("Element already exists in set");
 	}
 	public void Delete(T element) throws Exception
 	{
 		if(setobj.isMember(element))
 			setobj.deleteAtIndex(setobj.findob(element));
 		else
-			throw new Exception();
+			throw new Exception("Element does not exist in set");
 	}
 	public MySet<T> union(MySet<T> otherSet)
 	{
