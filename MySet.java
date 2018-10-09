@@ -14,56 +14,92 @@ public class MySet<T>
 	{
 		return setobj.isMember(o);
 	}
-	public void Insert(T o) throws Exception
+	public void addElement(T element) throws Exception
 	{
-		if(!setobj.isMember(o))
-			setobj.addAtHead(o);
+		if(!setobj.isMember(element))
+			setobj.addAtHead(element);
 		else
 			throw new Exception();
 	}
-	public void Delete(T o) throws Exception
+	public void Delete(T element) throws Exception
 	{
-		if(setobj.isMember(o))
-			setobj.deleteAtIndex(setobj.findob(o));
+		if(setobj.isMember(element))
+			setobj.deleteAtIndex(setobj.findob(element));
 		else
 			throw new Exception();
 	}
-	public MySet<T> Union(MySet<T> a)
+	public MySet<T> union(MySet<T> otherSet)
 	{
 		MySet<T> unset = new MySet<T>();
 		MyLinkedList<T>.Node t = setobj.head;
 		while(t!=null)
 		{
 			try{
-				unset.Insert(t.data);
+				unset.addElement(t.data);
 			} catch(Exception e){}
 			t=t.next;
 		}
 
-		t = a.setobj.head;
+		t = otherSet.setobj.head;
 		while(t!=null)
 		{
 			try{
-				unset.Insert(t.data);
+				unset.addElement(t.data);
 			} catch(Exception e){}
 			t=t.next;
 		}
 		return unset;
 	}
-	public MySet<T> Intersection(MySet<T> a)
+	public MySet<T> intersection(MySet<T> otherSet)
 	{
 		MySet<T> intset = new MySet<T>();
 		MyLinkedList<T>.Node t = setobj.head;
 		while(t!=null)
 		{
-			if(a.isMember(t.data))
+			if(otherSet.isMember(t.data))
 			{
-				try{
-				intset.Insert(t.data);
-				} catch(Exception e){}
+                            try{
+                            intset.addElement(t.data);
+                            } catch(Exception e){}
 			}
 			t=t.next;
 		}
 		return intset;
 	}
+//        public static void main(String[] args)
+//        {
+//            try
+//            {
+//                MySet<Integer> a = new MySet<>();
+//                System.out.println(a.isEmpty());
+//                a.addElement(1);
+//                a.addElement(2);
+//                a.addElement(3);
+//                a.addElement(4);
+//                a.addElement(5);
+//                System.out.println(a.isEmpty());
+//                a.setobj.printList();
+//                a.Delete(3);
+//                a.setobj.printList();
+//
+//
+//                MySet<Integer> b = new MySet<>();
+//                b.addElement(4);
+//                b.addElement(3);
+//                b.addElement(0);
+//                b.addElement(9);
+//                b.addElement(7);
+//                b.addElement(-1);
+//                System.out.println(a.isMember(1));
+//                System.out.println(a.isMember(7));
+//                System.out.println(b);
+//                a.union(b).setobj.printList();
+//                 System.out.println(b);
+//                a.intersection(b).setobj.printList();
+//            }
+//            catch (Exception e)
+//            {
+//                System.out.println("Except");
+//            }
+//        }
 }
