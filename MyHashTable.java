@@ -36,5 +36,22 @@ public class MyHashTable {
                 ptr.data.addPositions(w.getAllPositionsForThisWord());
         }
     }
+    public WordEntry getWordEntry(String str){
+        int ind = getHashIndex(str);
+        if(harray[ind]==null){
+            return null;
+        }
+        MyLinkedList<WordEntry>.Node ptr = harray[ind].setobj.head;
+        while(ptr!=null){
+            if(ptr.data.word.equals(str))
+                break;
+            ptr=ptr.next;
+        }
+        if(ptr==null){
+            return null;
+        }
+        else
+            return ptr.data;
+    }
     
 }
