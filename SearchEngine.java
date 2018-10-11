@@ -15,17 +15,29 @@ public class SearchEngine {
     public void performAction(String actionMessage) throws FileNotFoundException{
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
-        
-        String pagename,str;
+        String pagename,wordname,str="";
         
         switch(action){
             case "addPage":
                 pagename = sc.next();
-                Scanner psc = new Scanner(new File("./webpages/"+pagename));
-                psc.useDelimiter("@#$%=1");
-                str = psc.next();
-                str = str.toLowerCase();
-                
+                PageEntry newpe = new PageEntry(pagename);
+                newpe.setid(ipi.getPageId());
+                ipi.setPageId(ipi.getPageId()+1);
+                ipi.addPage(newpe);
+            break;
+            
+            case "queryFindPagesWhichContainWord":
+                wordname = sc.next();
+                MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
+                while (ptr!=null){
+                    str = ", "+ptr.data.name;
+                }
+                System.out.println(str.substring(2));
+            break;
+            
+            case "queryFindPositionsOfWordInAPage":
+                wordname = sc.next();
+                pagename = sc.next();
         }
     }
     

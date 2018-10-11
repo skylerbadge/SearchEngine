@@ -1,9 +1,10 @@
 public class InvertedPageIndex {
     
     MyHashTable ht;
-    
+    int pageid;
     public InvertedPageIndex(){
         ht = new MyHashTable();
+        pageid = 1;
     }
     public void addPage(PageEntry p){
         MyLinkedList<WordEntry> wll = p.getPageIndex().getWordEntries();
@@ -26,4 +27,10 @@ public class InvertedPageIndex {
         }
         return pes;
     }
+    
+    public int getPageId(){
+        return pageid;
+    }
+    public void setPageId(int n){
+        pageid = n;
 }

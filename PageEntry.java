@@ -5,50 +5,52 @@ public class PageEntry {
     PageIndex pi;
     int id=0;
     
-    public PageEntry(String pageName){
+    public PageEntry(String pageName) throws FileNotFoundException{
         name = pageName;
         pi = new PageIndex();
-        Scanner psc = new Scanner(new File("./webpages/"+pagename));
-        psc.useDelimiter("YFYF");
-        String strn="",str = psc.next(),w="";
-        str = str.toLowerCase();
+        Scanner psc = new Scanner(new File("./webpages/"+pageName));
+        String strn="",w="",str;
         char ch;
         int i,wi=1;
-        for (i=0; i < str.length(); i++){
-            ch = str.charAt(i);
-            if (ch=='{'||ch=='}'||ch=='['||ch==']'||ch=='<'||ch=='>'||ch=='='||ch=='('||ch==')'||ch=='.'||ch==','||ch==';'||ch=='’'||ch=='”'||ch=='?'||ch=='#'||ch=='!'||ch=='-'||ch==':')
-            {
-                ch = ' ';
-                strn=strn+ch;
-            }
-            if(ch == ' '){
-                if(w.equals(""))
-                    continue;
-                if(w.equals("a")||w.equals("an")||w.equals("the")||w.equals("they")||w.equals("these")||w.equals("this")||w.equals("for")||w.equals("is")||w.equals("are")||w.equals("was")||w.equals("of")||w.equals("or")||w.equals("and")||w.equals("does")||w.equals("will")||w.equals("whose"))
+        while(psc.hasNextLine()){
+            str = psc.nextLine()+" ";
+            str = str.toLowerCase();
+            w="";                    
+            for (i=0; i < str.length(); i++){
+                ch = str.charAt(i);
+                if (ch=='{'||ch=='}'||ch=='['||ch==']'||ch=='<'||ch=='>'||ch=='='||ch=='('||ch==')'||ch=='.'||ch==','||ch==';'||ch=='\''||ch=='"'||ch=='?'||ch=='#'||ch=='!'||ch=='-'||ch==':')
                 {
-                    strn+=w;
-                    w="";
-                    wi++;
-                    continue;
+                    ch = ' ';
+                strn=strn+ch;
                 }
-                if(w.equals("stacks"))
-                    w="stack";
-                else if(w.equals("structures"))
-                    w="structure";
-                else if(w.equals("applications"))
-                    w="application";
-                Position p = new Position(this,wi);
-                pi.addPositionForWord(w,p);
-                wi++;
+                if(ch == ' '){
+                    System.out.println(w+"   "+wi);
+                    if(w.equals(""))
+                        continue;
+                    if(w.equals("a")||w.equals("an")||w.equals("the")||w.equals("they")||w.equals("these")||w.equals("this")||w.equals("for")||w.equals("is")||w.equals("are")||w.equals("was")||w.equals("of")||w.equals("or")||w.equals("and")||w.equals("does")||w.equals("will")||w.equals("whose"))
+                    {
+                    strn+=w;
+                        w="";
+                        wi++;
+                        continue;
+                    }
+                    if(w.equals("stacks"))
+                        w="stack";
+                    else if(w.equals("structures"))
+                        w="structure";
+                    else if(w.equals("applications"))
+                        w="application";
+                    Position p = new Position(this,wi);
+                    pi.addPositionForWord(w,p);
+                    wi++;
                 strn+=w;
-                w="";
+                    w="";
+                }
+                else{
+                    w = w+ch;
+                }           
             }
-            else{
-                w = w+ch;
-            }
-            
         }
-        
     }
     public PageIndex getPageIndex(){
         return pi;
@@ -61,10 +63,8 @@ public class PageEntry {
     }
     public static void main(String[] args) {
         try{
-        Scanner sc = new Scanner(new File("./webpages/stacklighting"));
-        sc.useDelimiter("$#@");
-        String fl = sc.next();
-        System.out.println(fl.toLowerCase());
+        PageEntry pe = new PageEntry("stack_oracle");
+            System.out.println(pe.pi.getWordEntries().head.data.word);
         } catch(Exception e){}
     }
 }
