@@ -8,4 +8,5 @@ stack_cprogramming
 stack_cprogramming
 stack_oracle
 stack_cprogramming, stack_datastructure_wiki, stackoverflow
-stackmagazine
+stackmagazine 
+1, 25

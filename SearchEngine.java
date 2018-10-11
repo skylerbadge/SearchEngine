@@ -55,11 +55,11 @@ public class SearchEngine {
                     System.out.println("Webpage "+pagename+" does not contain word "+wordname);
                     return;
                 }
-                System.out.println(we);
                 MyLinkedList<Position>.Node ptr2 = we.getAllPositionsForThisWord().head;
                 while(ptr2!=null){
                     if(ptr2.data.p.equals(pe))
                         str = str+", "+ptr2.data.wi;
+                    ptr2=ptr2.next;
                 }
                 if(str.equals(""))//e
                 {
@@ -67,7 +67,7 @@ public class SearchEngine {
                     return;
                 }                    
                 else
-                    System.out.println(str);
+                    System.out.println(str.substring(2));
             break;
             default:
                 System.out.println("Incorrect Query");

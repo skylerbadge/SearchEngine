@@ -15,3 +15,4 @@ queryFindPagesWhichContainWord function
 addPage stacklighting
 addPage stackmagazine
 queryFindPagesWhichContainWord magazines
+queryFindPositionsOfWordInAPage stack stackmagazine
