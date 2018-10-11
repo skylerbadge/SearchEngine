@@ -6,11 +6,7 @@ public class SearchEngine {
     
     public SearchEngine(){
         ipi = new InvertedPageIndex();
-    }
-    
-    public String replaceSpecialCharacters(String str){
-        
-    }
+    }    
     
     public void performAction(String actionMessage) throws FileNotFoundException{
         Scanner sc = new Scanner(actionMessage);
@@ -38,6 +34,18 @@ public class SearchEngine {
             case "queryFindPositionsOfWordInAPage":
                 wordname = sc.next();
                 pagename = sc.next();
+                PageEntry pe = ipi.getPageEntry(pagename);
+                WordEntry we = ipi.ht.getWordEntry(wordname);
+                MyLinkedList<Position>.Node ptr2 = we.getAllPositionsForThisWord().head;
+                while(ptr2!=null){
+                    if(ptr2.data.p.equals(pe))
+                        str = ", "+ptr2.data.wi;
+                }
+                if(str.equals(""))
+                    ;//throw
+                else
+                    System.out.println(str);
+            break;
         }
     }
     

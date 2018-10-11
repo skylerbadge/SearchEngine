@@ -1,6 +1,7 @@
 public class MyHashTable {
     int num;
     int size = 100;
+   
     MySet<WordEntry>[] harray;
     public MyHashTable(){
         num = 0;
