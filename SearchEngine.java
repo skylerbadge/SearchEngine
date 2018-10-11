@@ -32,8 +32,9 @@ public class SearchEngine {
                     return;
                 }
                 MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
+                //System.out.println(ipi.getPagesWhichContainWord(wordname).setobj.numNodes);
                 while (ptr!=null){
-                    str = ", "+ptr.data.name;
+                    str = str+", "+ptr.data.name;
                     ptr = ptr.next;
                 }
                 System.out.println(str.substring(2));
@@ -58,7 +59,7 @@ public class SearchEngine {
                 MyLinkedList<Position>.Node ptr2 = we.getAllPositionsForThisWord().head;
                 while(ptr2!=null){
                     if(ptr2.data.p.equals(pe))
-                        str = ", "+ptr2.data.wi;
+                        str = str+", "+ptr2.data.wi;
                 }
                 if(str.equals(""))//e
                 {
