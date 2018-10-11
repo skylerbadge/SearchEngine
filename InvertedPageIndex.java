@@ -9,18 +9,22 @@ public class InvertedPageIndex {
         pes = new MySet<PageEntry>();
     }
     public void addPage(PageEntry p){
+        //System.out.println(p.name+"  hahahahah");
         pes.addElement(p);
         MyLinkedList<WordEntry> wll = p.getPageIndex().getWordEntries();
+        //System.out.println(wll.numNodes+"  haello  ");        
         MyLinkedList<WordEntry>.Node ptr = wll.head;
         while(ptr!=null){
             ht.addPositionsForWord(ptr.data);
+            //System.out.print(ptr.data.word+" ");
             ptr = ptr.next;
         }
     }
     
     public MySet<PageEntry> getPagesWhichContainWord(String str){
+        str = str.toLowerCase();
         WordEntry w = ht.getWordEntry(str);
-        System.out.println("rere "+w);
+        //System.out.println("rere "+w);
         if(w==null)
             return null;
         MyLinkedList<Position>.Node ptr = w.posll.setobj.head;

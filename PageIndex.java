@@ -4,6 +4,7 @@ public class PageIndex {
         wes = new MySet<WordEntry>();
     }
     public void addPositionForWord(String str, Position p){
+        str = str.toLowerCase();
         MyLinkedList<WordEntry>.Node ptr = wes.setobj.head;
         while(ptr!=null){
             if(ptr.data.word.equals(str))
