@@ -20,6 +20,7 @@ public class InvertedPageIndex {
     
     public MySet<PageEntry> getPagesWhichContainWord(String str){
         WordEntry w = ht.getWordEntry(str);
+        System.out.println("rere "+w);
         if(w==null)
             return null;
         MyLinkedList<Position>.Node ptr = w.posll.setobj.head;

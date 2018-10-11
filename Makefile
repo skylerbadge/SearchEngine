@@ -1,5 +1,5 @@
 all:
-	javac MySet.java MyLinkedList.java PageIndex.java Position.java WordEntry.java MyHashTable.java InvertedPageIndex.java PageEntry.java SearchEngine.java
+	javac MySet.java MyLinkedList.java PageIndex.java Position.java WordEntry.java MyHashTable.java InvertedPageIndex.java PageEntry.java SearchEngine.java Checker.java
 
 clean:
 	rm *.class

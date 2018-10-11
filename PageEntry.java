@@ -24,7 +24,6 @@ public class PageEntry {
                 strn=strn+ch;
                 }
                 if(ch == ' '){
-                    System.out.println(w+"   "+wi);
                     if(w.equals(""))
                         continue;
                     if(w.equals("a")||w.equals("an")||w.equals("the")||w.equals("they")||w.equals("these")||w.equals("this")||w.equals("for")||w.equals("is")||w.equals("are")||w.equals("was")||w.equals("of")||w.equals("or")||w.equals("and")||w.equals("does")||w.equals("will")||w.equals("whose"))

@@ -24,11 +24,16 @@ public class SearchEngine {
             
             case "queryFindPagesWhichContainWord":
                 wordname = sc.next();
+                if(ipi.getPagesWhichContainWord(str)==null)//e
+                {
+                    System.err.println("No webpage contains word "+wordname);
+                    return;
+                }
                 MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
                 while (ptr!=null){
                     str = ", "+ptr.data.name;
                 }
-                System.out.println(str.substring(2));
+                System.out.println(actionMessage+": "+str.substring(2));
             break;
             
             case "queryFindPositionsOfWordInAPage":
@@ -44,8 +49,10 @@ public class SearchEngine {
                 if(str.equals(""))
                     ;//throw
                 else
-                    System.out.println(str);
+                    System.out.println(actionMessage+": "+str);
             break;
+            default:
+                System.out.println("Incorrect Query");
         }
     }
     
