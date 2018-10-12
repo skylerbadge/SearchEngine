@@ -67,7 +67,7 @@ public class SearchEngine {
                     return;
                 }                    
                 else
-                    System.out.println(str.substring(2));
+                    System.out.println(wordname+" : "+str.substring(2));
             break;
             default:
                 System.out.println("Incorrect Query");
