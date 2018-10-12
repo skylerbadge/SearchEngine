@@ -20,8 +20,22 @@ public class WordEntry {
         return posll.setobj;
     }
     //fill
-    public float getTermFrequency(String word){
-        return 1.0f ; 
+    public float getTermFrequency(String page){
+        MyLinkedList<Position>.Node ptr = posll.setobj.head;
+        int ctrw=0;
+        PageEntry pe = null;
+        while(ptr!=null){
+            if(ptr.data.p.name.equals(page)){
+                ctrw++;
+                if(ctrw==1){
+                    pe = ptr.data.p;
+                }
+            } 
+            ptr = ptr.next;
+        }
+        if(ctrw==0||pe==null)
+            return 0.0f;
+        return (((float)ctrw)/((float)pe.getPageIndex().getWordEntries().getSize()));
     }
 //    public static void main(String[] args) {
 //        WordEntry w1 = new WordEntry("Sky");
