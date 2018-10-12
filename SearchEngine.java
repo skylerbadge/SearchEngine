@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class SearchEngine {
     InvertedPageIndex ipi;
     int numpages=0;
@@ -8,7 +10,7 @@ public class SearchEngine {
         ipi = new InvertedPageIndex();
     }    
     
-    public void performAction(String actionMessage) throws FileNotFoundException{
+    public void performAction(String actionMessage){
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
         String pagename,wordname,str="";
@@ -16,10 +18,15 @@ public class SearchEngine {
         switch(action){
             case "addPage":
                 pagename = sc.next();
-                PageEntry newpe = new PageEntry(pagename);
-                newpe.setid(ipi.getPageId());
-                ipi.setPageId(ipi.getPageId()+1);
-                ipi.addPage(newpe);
+                PageEntry newpe;
+                try {
+                    newpe = new PageEntry(pagename);
+                    newpe.setid(ipi.getPageId());
+                    ipi.setPageId(ipi.getPageId()+1);
+                    ipi.addPage(newpe);
+                } catch (FileNotFoundException ex) {
+                    System.out.println("No webpage with the name "+pagename+" exists");
+                }
                 //System.out.println(ipi.ht.num);
                 //System.out.println(newpe.pi.wes.setobj.numNodes);                
             break;

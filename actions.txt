@@ -6,8 +6,6 @@ queryFindPositionsOfWordInAPage magazines stack_datastructure_wiki
 queryFindPagesWhichContainWord allain
 addPage stack_cprogramming
 queryFindPagesWhichContainWord allain
-queryFindPositionsOfWordInAPage allain stack_cprogramming
-queryFindPositionsOfWordInAPage ALEX stack_cprogramming
 queryFindPagesWhichContainWord C
 queryFindPagesWhichContainWord C++
 addPage stack_oracle
