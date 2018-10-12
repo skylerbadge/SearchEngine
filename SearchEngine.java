@@ -14,6 +14,7 @@ public class SearchEngine {
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
         String pagename,wordname,str="";
+        WordEntry we;
         
         switch(action){
             case "addPage":
@@ -40,8 +41,10 @@ public class SearchEngine {
                 }
                 MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
                 //System.out.println(ipi.getPagesWhichContainWord(wordname).setobj.numNodes);
+                we = ipi.ht.getWordEntry(wordname);
                 while (ptr!=null){
                     str = str+", "+ptr.data.name;
+                    System.out.println(we.getTermFrequency(ptr.data.name));
                     ptr = ptr.next;
                 }
                 System.out.println(str.substring(2));
@@ -56,7 +59,7 @@ public class SearchEngine {
                     System.out.println("No webpage "+pagename+" found");
                     return;
                 }
-                WordEntry we = ipi.ht.getWordEntry(wordname);
+                we = ipi.ht.getWordEntry(wordname);
                 if(we==null)//e
                 {
                     System.out.println("Webpage "+pagename+" does not contain word "+wordname);
