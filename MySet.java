@@ -17,7 +17,7 @@ public class MySet<T>
 	public void addElement(T element) //throws Exception
 	{
 		if(!setobj.isMember(element))
-			setobj.addAtHead(element);
+			setobj.addAtTail(element);
 		else;
 			//throw new Exception("Element already exists in set");
 	}

@@ -47,6 +47,7 @@ public class InvertedPageIndex {
         while(ptr!=null){
             if(ptr.data.name.equals(str))
                 break;
+            ptr=ptr.next;
         }
         if(ptr==null)
             return null;
