@@ -1,7 +1,5 @@
 import java.util.Scanner;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class SearchEngine {
     InvertedPageIndex ipi;
     int numpages=0;
@@ -28,22 +26,18 @@ public class SearchEngine {
                 } catch (FileNotFoundException ex) {
                     System.out.println("No webpage with the name "+pagename+" exists");
                 }
-                //System.out.println(ipi.ht.num);
-                //System.out.println(newpe.pi.wes.setobj.numNodes);                
             break;
             
             case "queryFindPagesWhichContainWord":
                 wordname = sc.next();
-                if(ipi.getPagesWhichContainWord(wordname)==null)//e
+                if(ipi.getPagesWhichContainWord(wordname)==null)//exception
                 {
                     System.out.println("No webpage contains word "+wordname);
                     return;
                 }
                 MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
-                //we = ipi.ht.getWordEntry(wordname);
                 while (ptr!=null){
                     str = str+", "+ptr.data.name;
-                    //System.out.println(we.getTermFrequency(ptr.data.name));
                     ptr = ptr.next;
                 }
                 System.out.println(str.substring(2));
@@ -59,7 +53,7 @@ public class SearchEngine {
                     return;
                 }
                 we = ipi.ht.getWordEntry(wordname);
-                if(we==null)//e
+                if(we==null)//exception
                 {
                     System.out.println("Webpage "+pagename+" does not contain word "+wordname);
                     return;
@@ -70,7 +64,7 @@ public class SearchEngine {
                         str = str+", "+ptr2.data.wi;
                     ptr2=ptr2.next;
                 }
-                if(str.equals(""))//e
+                if(str.equals(""))//exception
                 {
                     System.out.println("Webpage "+pagename+" does not contain word "+wordname);
                     return;

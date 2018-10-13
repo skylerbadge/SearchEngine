@@ -5,7 +5,7 @@ public class WordEntry {
         this.word = word;
         posll = new MySet<Position>();
     }
-    public void addPosition(Position position) //throws Exception
+    public void addPosition(Position position)
     {
         posll.addElement(position);
     }
@@ -19,7 +19,6 @@ public class WordEntry {
     public MyLinkedList<Position> getAllPositionsForThisWord(){
         return posll.setobj;
     }
-    //fill
     public float getTermFrequency(String page){
         MyLinkedList<Position>.Node ptr = posll.setobj.head;
         int ctrw=0;
@@ -37,12 +36,4 @@ public class WordEntry {
             return 0.0f;
         return (((float)ctrw)/((float)pe.getPageIndex().getWordEntries().getSize()));
     }
-//    public static void main(String[] args) {
-//        WordEntry w1 = new WordEntry("Sky");
-//        WordEntry w2 = new WordEntry("Nav");
-//        WordEntry w3 = new WordEntry("Sky");
-//        System.out.println(w1.word);
-//        System.out.println(w1.word.equals(w3.word));
-//        System.out.println(w3.word);   
-//    }
 }

@@ -26,7 +26,6 @@ public class PageEntry {
                 if(ch == ' '){
                     if(w.equals(""))
                         continue;
-//                    System.out.println(w+"   "+wi);
                     if(w.equals("a")||w.equals("an")||w.equals("the")||w.equals("they")||w.equals("these")||w.equals("this")||w.equals("for")||w.equals("is")||w.equals("are")||w.equals("was")||w.equals("of")||w.equals("or")||w.equals("and")||w.equals("does")||w.equals("will")||w.equals("whose"))
                     {
                     strn+=w;
@@ -60,11 +59,5 @@ public class PageEntry {
     }
     public void setid(int n){
         id = n;
-    }
-    public static void main(String[] args) {
-        try{
-        PageEntry pe = new PageEntry("stack_cprogramming");
-//            System.out.println(pe.pi.getWordEntries().head.data.word);
-        } catch(Exception e){}
     }
 }
