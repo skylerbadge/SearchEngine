@@ -1,7 +1,9 @@
+@SuppressWarnings("unchecked")
+
 public class MyHashTable {
     int num;
     int size = 73;
-   
+    
     MySet<WordEntry>[] harray;
     public MyHashTable(){
         num = 0;
