@@ -12,7 +12,8 @@ public class SearchEngine {
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
         String pagename,wordname,str="";
-        WordEntry we;
+        //WordEntry we;
+        HashWord hw;
         
         switch(action){
             case "addPage":
@@ -52,13 +53,13 @@ public class SearchEngine {
                     System.out.println("No webpage "+pagename+" found");
                     return;
                 }
-                we = ipi.ht.getWordEntry(wordname);
-                if(we==null)//exception
+                hw = ipi.ht.getHashWord(wordname);
+                if(hw==null)//exception
                 {
                     System.out.println("Webpage "+pagename+" does not contain word "+wordname);
                     return;
                 }
-                MyLinkedList<Position>.Node ptr2 = we.getAllPositionsForThisWord().head;
+                MyLinkedList<Position>.Node ptr2 = hw.getAllPositionsForThisWord().head;
                 while(ptr2!=null){
                     if(ptr2.data.p.equals(pe))
                         str = str+", "+ptr2.data.wi;

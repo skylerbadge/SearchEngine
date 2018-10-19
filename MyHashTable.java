@@ -4,7 +4,7 @@ public class MyHashTable {
     int num;
     int size = 73;
     
-    MySet<WordEntry>[] harray;
+    MySet<HashWord>[] harray;
     public MyHashTable(){
         num = 0;
         harray = new MySet[size];
@@ -21,31 +21,35 @@ public class MyHashTable {
     public void addPositionsForWord(WordEntry w){
         int ind = getHashIndex(w.word);
         if(harray[ind]==null){
-            harray[ind] = new MySet<WordEntry>();
-            harray[ind].addElement(w);
+            harray[ind] = new MySet<HashWord>();
+            HashWord hw = new HashWord(w.word);
+            hw.addPositions(w.getAllPositionsForThisWord());
+            harray[ind].addElement(hw);
             num++;
         }
         else{
-            MyLinkedList<WordEntry>.Node ptr = harray[ind].setobj.head;
+            MyLinkedList<HashWord>.Node ptr = harray[ind].setobj.head;
             while(ptr!=null){
                 if(ptr.data.word.equals(w.word))
                     break;
                 ptr=ptr.next;
             }
             if(ptr==null){
-                harray[ind].addElement(w);
+                HashWord hw = new HashWord(w.word);
+                hw.addPositions(w.getAllPositionsForThisWord());
+                harray[ind].addElement(hw);
             }
             else
                 ptr.data.addPositions(w.getAllPositionsForThisWord());
         }
     }
-    public WordEntry getWordEntry(String str){
+    public HashWord getHashWord(String str){
         str = str.toLowerCase();
         int ind = getHashIndex(str);
         if(harray[ind]==null){
             return null;
         }
-        MyLinkedList<WordEntry>.Node ptr = harray[ind].setobj.head;
+        MyLinkedList<HashWord>.Node ptr = harray[ind].setobj.head;
         while(ptr!=null){
             if(ptr.data.word.equals(str))
                 break;

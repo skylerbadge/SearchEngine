@@ -20,16 +20,16 @@ public class InvertedPageIndex {
     
     public MySet<PageEntry> getPagesWhichContainWord(String str){
         str = str.toLowerCase();
-        WordEntry w = ht.getWordEntry(str);
-        if(w==null)
+        HashWord hw = ht.getHashWord(str);
+        if(hw==null)
             return null;
-        MyLinkedList<Position>.Node ptr = w.posll.setobj.head;
-        MySet<PageEntry> pes = new MySet<>();
+        MyLinkedList<Position>.Node ptr = hw.posll.setobj.head;
+        MySet<PageEntry> newpes = new MySet<>();
         while(ptr!=null){
-            pes.addElement(ptr.data.getPageEntry());
+            newpes.addElement(ptr.data.getPageEntry());
             ptr=ptr.next;
         }
-        return pes;
+        return newpes;
     }
     
     public int getPageId(){
