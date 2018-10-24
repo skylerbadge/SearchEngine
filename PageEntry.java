@@ -61,8 +61,22 @@ public class PageEntry {
     public void setid(int n){
         id = n;
     }
-    
-    public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase){
-        
+    public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase, InvertedPageIndex ipi){
+        float tf,idf,m,rel = 0;
+        if(doTheseWordsRepresentAPhrase){
+            m=pi.numPhrase(str);
+            rel = (float) ((m/(pi.getWordEntries().numNodes-((str.length-1)*m)))*Math.log10(ipi.numPages/ipi.getPagesWhichContainPhrase(str).setobj.getSize()));
+        }
+        else{
+            for(int i = 0 ; i<str.length ; i++){
+                tf = getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
+                if(ipi.getPagesWhichContainWord(str[i])==null)
+                    idf = 0;
+                else
+                    idf = (float) Math.log10(ipi.numPages/ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
+                rel = rel + tf*idf;
+            }
+        }
+        return rel;
     }
 }

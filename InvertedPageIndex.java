@@ -3,10 +3,12 @@ public class InvertedPageIndex {
     MyHashTable ht;
     int pageid;
     MySet<PageEntry> pes;
+    int numPages;
     public InvertedPageIndex(){
         ht = new MyHashTable();
         pageid = 1;
         pes = new MySet<PageEntry>();
+        numPages = 0;
     }
     public void addPage(PageEntry p){
         pes.addElement(p);
@@ -16,6 +18,7 @@ public class InvertedPageIndex {
             ht.addPositionsForWord(ptr.data);
             ptr = ptr.next;
         }
+        numPages++;
     }
     
     public MySet<PageEntry> getPagesWhichContainWord(String str){
