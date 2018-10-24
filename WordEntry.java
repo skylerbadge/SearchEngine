@@ -1,26 +1,26 @@
 public class WordEntry {
     String word;
-    MySet<Position> posll;
+    MyAVL<Position> posavl;
     public WordEntry(String word) {
         this.word = word;
-        posll = new MySet<Position>();
+        posavl = new MyAVL<Position>();
     }
     public void addPosition(Position position)
     {
-        posll.addElement(position);
+        posavl.insert(position);
     }
     public void addPositions(MyLinkedList<Position> positions){
         MyLinkedList<Position>.Node ptr = positions.head;
         while(ptr!=null){
-            posll.addElement(ptr.data);
+            posavl.insert(ptr.data);
             ptr = ptr.next;
         }
     }
     public MyLinkedList<Position> getAllPositionsForThisWord(){
-        return posll.setobj;
+        return posavl.returnLL();
     }
     public float getTermFrequency(String page){
-        MyLinkedList<Position>.Node ptr = posll.setobj.head;
+        MyLinkedList<Position>.Node ptr = posavl.returnLL().head;
         int ctrw=0;
         PageEntry pe = null;
         while(ptr!=null){

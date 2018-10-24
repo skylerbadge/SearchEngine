@@ -87,7 +87,7 @@ public class MyAVL<T extends Comparable<T>> {
              t.leftChild = insertrec( o, t.leftChild );
              if( height( t.leftChild ) - height( t.rightChild ) == 2 )
                  if(t.leftChild.data.compareTo(o)<0)
-                     t = rotateRight( t );
+                     t = rotateRight(t);
                  else{
                      t.leftChild = rotateLeft(t.leftChild);
                      t = rotateRight(t);
@@ -106,6 +106,19 @@ public class MyAVL<T extends Comparable<T>> {
          }
          t.height = Math.max( height( t.leftChild ), height( t.rightChild ) ) + 1;
          return t;
+    }
+    public MyLinkedList<T> returnLL(){
+        MyLinkedList<T> ll = new MyLinkedList<>();
+        returnLLinner(root,ll);
+        return ll;
+    }
+    public void returnLLinner(Node r, MyLinkedList<T> mll){
+        if (r != null)
+         {
+             returnLLinner(r.leftChild,mll);
+             mll.addAtHead(r.data);
+             returnLLinner(r.rightChild,mll);
+         }
     }
     
     public void inorder(Node r)
@@ -126,7 +139,8 @@ public class MyAVL<T extends Comparable<T>> {
         av.insert(0);
         av.insert(50);
         av.insert(2);
-        
-        av.inorder(av.root);
+        System.out.println(av.search(5));
+        System.out.println(av.search(53));
+        av.returnLL().printList();
     }
 }

@@ -3,9 +3,10 @@ public class Position implements Comparable<Position>{
     int wi;
     int swi; // stored word index
 
-    public Position(PageEntry p, int wordIndex){
+    public Position(PageEntry p, int wordIndex , int StoredIndex){
         this.p = p;
         wi = wordIndex;
+        swi = StoredIndex;
     }
     public PageEntry getPageEntry(){
         return p;

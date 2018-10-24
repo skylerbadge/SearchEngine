@@ -11,7 +11,7 @@ public class PageEntry {
         Scanner psc = new Scanner(new File("./webpages/"+pageName));
         String strn="",w="",str;
         char ch;
-        int i,wi=1;
+        int i,wi=1,swi=1;
         while(psc.hasNextLine()){
             str = psc.nextLine()+" ";
             str = str.toLowerCase();
@@ -39,8 +39,9 @@ public class PageEntry {
                         w="structure";
                     else if(w.equals("applications"))
                         w="application";
-                    Position p = new Position(this,wi);
+                    Position p = new Position(this,wi,swi);
                     pi.addPositionForWord(w,p);
+                    swi++;
                     wi++;
                 strn+=w;
                     w="";
