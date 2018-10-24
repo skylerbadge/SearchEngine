@@ -61,4 +61,8 @@ public class PageEntry {
     public void setid(int n){
         id = n;
     }
+    
+    public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase){
+        
+    }
 }

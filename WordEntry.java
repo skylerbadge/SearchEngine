@@ -19,20 +19,12 @@ public class WordEntry {
     public MyLinkedList<Position> getAllPositionsForThisWord(){
         return posavl.returnLL();
     }
-    public float getTermFrequency(String page){
+    public float getTermFrequency(String word){
+        word = word.toLowerCase();
         MyLinkedList<Position>.Node ptr = posavl.returnLL().head;
-        int ctrw=0;
-        PageEntry pe = null;
-        while(ptr!=null){
-            if(ptr.data.p.name.equals(page)){
-                ctrw++;
-                if(ctrw==1){
-                    pe = ptr.data.p;
-                }
-            } 
-            ptr = ptr.next;
-        }
-        if(ctrw==0||pe==null)
+        PageEntry pe = ptr.data.p;
+        int ctrw = pe.pi.getWordEntry(word).posavl.numNodes;
+        if(ctrw==0)
             return 0.0f;
         return (((float)ctrw)/((float)pe.getPageIndex().getWordEntries().getSize()));
     }

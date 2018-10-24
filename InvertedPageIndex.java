@@ -32,6 +32,42 @@ public class InvertedPageIndex {
         return newpes;
     }
     
+    public MySet<PageEntry> pagesAnyWord(String words[]){
+        MySet<PageEntry> pages = new MySet<>();
+        for(int i = 0; i<words.length; i++){
+            pages.union(getPagesWhichContainWord(words[i]));
+        }
+        if(pages.isEmpty())
+            return null;
+        return pages;
+    }
+    
+    public MySet<PageEntry> pagesAllWord(String words[]){
+        MySet<PageEntry> pages = getPagesWhichContainWord(words[0]);
+        for(int i = 1; i<words.length; i++){
+            pages.intersection(getPagesWhichContainWord(words[i]));
+        }
+        if(pages.isEmpty())
+            return null;
+        return pages;
+    }
+    
+    public MySet<PageEntry> getPagesWhichContainPhrase(String str[]){
+        MySet<PageEntry> pages = pagesAllWord(str);
+        if(pages.isEmpty())
+            return null;
+        MyLinkedList<PageEntry>.Node ptr = pages.setobj.head;
+        MySet<PageEntry> pageswithphrase = new MySet<>();
+        while (ptr!=null) {
+            if(ptr.data.getPageIndex().numPhrase(str)>0)
+                pageswithphrase.addElement(ptr.data);
+            ptr = ptr.next;
+        }
+        if(pageswithphrase.isEmpty())
+            return null;
+        return pageswithphrase;
+    }
+    
     public int getPageId(){
         return pageid;
     }

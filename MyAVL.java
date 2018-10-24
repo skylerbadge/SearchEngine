@@ -22,15 +22,17 @@ public class MyAVL<T extends Comparable<T>> {
     }
     
     Node root;
+    int numNodes;
     
     public MyAVL(){
         root = null;
+        numNodes = 0;
     }
     public boolean isEmpty()
     {
-         return root == null;
+         return numNodes==0;
     }
-    public int height(Node n){
+    private int height(Node n){
         if(n == null)
             return -1;
         else
@@ -49,7 +51,7 @@ public class MyAVL<T extends Comparable<T>> {
         return ptr;
     }
     
-    public Node rotateRight(Node n){
+    private Node rotateRight(Node n){
        Node lch = n.leftChild;
        Node T = lch.rightChild;
         
@@ -61,7 +63,7 @@ public class MyAVL<T extends Comparable<T>> {
 
        return lch;
     }
-    public Node rotateLeft(Node n){
+    private Node rotateLeft(Node n){
        Node rch = n.rightChild;
        Node T = rch.leftChild;
         
@@ -76,9 +78,10 @@ public class MyAVL<T extends Comparable<T>> {
 
     public void insert(T o){
         root = insertrec(o,root);
+        numNodes++;
     }
     
-    public Node insertrec(T o, Node t)
+    private Node insertrec(T o, Node t)
     {
          if (t == null)
              t = new Node(o);
@@ -112,7 +115,7 @@ public class MyAVL<T extends Comparable<T>> {
         returnLLinner(root,ll);
         return ll;
     }
-    public void returnLLinner(Node r, MyLinkedList<T> mll){
+    private void returnLLinner(Node r, MyLinkedList<T> mll){
         if (r != null)
          {
              returnLLinner(r.leftChild,mll);
@@ -140,7 +143,7 @@ public class MyAVL<T extends Comparable<T>> {
         av.insert(50);
         av.insert(2);
         System.out.println(av.search(5));
-        System.out.println(av.search(53));
+        System.out.println(av.numNodes);
         av.returnLL().printList();
     }
 }
