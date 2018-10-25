@@ -123,27 +123,27 @@ public class MyAVL<T extends Comparable<T>> {
              returnLLinner(r.rightChild,mll);
          }
     }
-    
-    public void inorder(Node r)
-     {
-         if (r != null)
-         {
-             inorder(r.leftChild);
-             System.out.print(r.data +" ");
-             inorder(r.rightChild);
-         }
-     }
-    public static void main(String[] args) {
-        MyAVL<Integer> av = new MyAVL<Integer>();
-        av.insert(5);
-        av.insert(45);
-        av.insert(30);
-        av.insert(3);
-        av.insert(0);
-        av.insert(50);
-        av.insert(2);
-        System.out.println(av.search(5));
-        System.out.println(av.numNodes);
-        av.returnLL().printList();
-    }
+//    
+//    public void inorder(Node r)
+//     {
+//         if (r != null)
+//         {
+//             inorder(r.leftChild);
+//             System.out.print(r.data +" ");
+//             inorder(r.rightChild);
+//         }
+//     }
+//    public static void main(String[] args) {
+//        MyAVL<Integer> av = new MyAVL<Integer>();
+//        av.insert(5);
+//        av.insert(45);
+//        av.insert(30);
+//        av.insert(3);
+//        av.insert(0);
+//        av.insert(50);
+//        av.insert(2);
+//        System.out.println(av.search(5));
+//        System.out.println(av.numNodes);
+//        av.returnLL().printList();
+//    }
 }

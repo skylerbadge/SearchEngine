@@ -9,6 +9,25 @@ public class SearchEngine {
         ipi = new InvertedPageIndex();
     }    
     
+    public void checkPlural(String str[]){
+        for(int i = 0; i<str.length; i++){
+            if(str[i].equals("stacks"))
+                str[i]="stack";
+            else if(str[i].equals("structures"))
+                str[i]="structure";
+            else if(str[i].equals("applications"))
+                str[i]="application";
+        }
+    }
+    public String checkPlural(String w){
+         if(w.equals("stacks"))
+            w="stack";
+        else if(w.equals("structures"))
+            w="structure";
+        else if(w.equals("applications"))
+            w="application";
+        return w;
+    }
     public void performAction(String actionMessage){
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
@@ -32,6 +51,7 @@ public class SearchEngine {
             
             case "queryFindPagesWhichContainWord":
                 wordname = sc.next();
+                wordname = checkPlural(wordname);
                 if(ipi.getPagesWhichContainWord(wordname)==null)//exception
                 {
                     System.out.println("No webpage contains word "+wordname);
@@ -47,6 +67,7 @@ public class SearchEngine {
             
             case "queryFindPositionsOfWordInAPage":
                 wordname = sc.next();
+                wordname = checkPlural(wordname);
                 pagename = sc.next();
                 PageEntry pe = ipi.getPageEntry(pagename);
                 if(pe==null)//e
@@ -75,12 +96,17 @@ public class SearchEngine {
                     System.out.println(wordname+" : "+str.substring(2));
             break;
             case "queryFindPagesWhichContainAllWords":
-                str = sc.nextLine();
+                str = sc.nextLine().substring(1);
                 str = str.toLowerCase();
                 stra = str.split(" ",0);
+                checkPlural(stra);
+//                for (int i = 0; i < stra.length; i++) {
+//                    System.out.println(stra[i]);
+//                }
                 MySet<PageEntry> pagesall = ipi.pagesAllWord(stra);
-                if(pagesall.isEmpty()){
+                if(pagesall==null||pagesall.isEmpty()){
                     System.out.println("No pages contain all of these words");
+                    return;
                 }
                 MySet<SearchResult> tosortall = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr1 = pagesall.setobj.head;
@@ -96,12 +122,14 @@ public class SearchEngine {
                 System.out.println(str1);
             break;
             case "queryFindPagesWhichContainAnyOfTheseWords":
-                str = sc.nextLine();
+                str = sc.nextLine().substring(1);
                 str = str.toLowerCase();
                 stra = str.split(" ",0);
+                checkPlural(stra);
                 MySet<PageEntry> pagesany = ipi.pagesAnyWord(stra);
-                if(pagesany.isEmpty()){
+                if(pagesany==null||pagesany.isEmpty()){
                     System.out.println("No pages contain any of these words");
+                    return;
                 }
                 MySet<SearchResult> tosortany = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr3 = pagesany.setobj.head;
@@ -117,12 +145,15 @@ public class SearchEngine {
                 System.out.println(str1);
             break;
             case "queryFindPagesWhichContainPhrase":
-                str = sc.nextLine();
+                str = sc.nextLine().substring(1);
                 str = str.toLowerCase();
                 stra = str.split(" ",0);
+                checkPlural(stra);
                 MySet<PageEntry> pagesphrase = ipi.getPagesWhichContainPhrase(stra);
-                if(pagesphrase.isEmpty()){
+//                System.out.println("here");
+                if(pagesphrase==null||pagesphrase.isEmpty()){
                     System.out.println("No pages contain this phrase");
+                    return;
                 }
                 MySet<SearchResult> tosortphrase = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr4 = pagesphrase.setobj.head;

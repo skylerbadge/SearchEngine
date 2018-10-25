@@ -59,6 +59,7 @@ public class PageIndex {
             }
             if(i==str.length)
                 ctr++;
+            ptr = ptr.next;
         }
         return ctr;
     }

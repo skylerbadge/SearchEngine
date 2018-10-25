@@ -11,7 +11,7 @@ public class Checker
 
 		try {
 			String actionString;
-			br = new BufferedReader(new FileReader("actions.txt"));
+			br = new BufferedReader(new FileReader("actionsmine.txt"));
 
 			while ((actionString = br.readLine()) != null) {
 				se.performAction(actionString);

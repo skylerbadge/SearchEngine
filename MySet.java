@@ -17,7 +17,7 @@ public class MySet<T>
 	public void addElement(T element)
 	{
 		if(!setobj.isMember(element))
-			setobj.addAtTail(element);
+			setobj.addAtHead(element);
 	}
 	public void Delete(T element)
 	{

@@ -8,7 +8,7 @@ public class PageEntry {
     public PageEntry(String pageName) throws FileNotFoundException{
         name = pageName;
         pi = new PageIndex();
-        Scanner psc = new Scanner(new File("./webpages/"+pageName));
+        Scanner psc = new Scanner(new File("./webpagesmine/"+pageName));
         String strn="",w="",str;
         char ch;
         int i,wi=1,swi=1;
@@ -61,7 +61,11 @@ public class PageEntry {
     public void setid(int n){
         id = n;
     }
-    public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase, InvertedPageIndex ipi){
+     public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase, InvertedPageIndex ipi){
+//        for(int i = 0 ; i<str.length ; i++){
+//                System.out.print(" "+str[i]);
+//        }//
+//        System.out.println("gag");
         float tf,idf,m,rel = 0;
         if(doTheseWordsRepresentAPhrase){
             m=pi.numPhrase(str);
@@ -69,12 +73,16 @@ public class PageEntry {
         }
         else{
             for(int i = 0 ; i<str.length ; i++){
-                tf = getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
-                if(ipi.getPagesWhichContainWord(str[i])==null)
-                    idf = 0;
-                else
+               // System.out.println("sdefed "+str[i]);
+                if(ipi.getPagesWhichContainWord(str[i])==null||getPageIndex().getWordEntry(str[i])==null){
+                    rel = 0;
+                }
+                else{
                     idf = (float) Math.log10(ipi.numPages/ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
-                rel = rel + tf*idf;
+//                    System.out.println(name+" page "+getPageIndex().getWordEntry(str[i]));
+                    tf = getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
+                    rel = rel + tf*idf;
+                }
             }
         }
         return rel;
