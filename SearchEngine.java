@@ -85,7 +85,7 @@ public class SearchEngine {
                 MySet<SearchResult> tosortall = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr1 = pagesall.setobj.head;
                 while(ptr1!=null){
-                    tosortall.addElement(new SearchResult(ptr1.data,ptr1.data.getRelevanceOfPage(stra,false, ipi)));
+                    tosortall.addElement(new SearchResult(ptr1.data,ptr1.data.getRelevanceOfPage(stra, false, ipi)));
                     ptr1 = ptr1.next;
                 }
                 ArrayList<SearchResult> alsrall = MySort.sortThisList(tosortall);
@@ -106,7 +106,7 @@ public class SearchEngine {
                 MySet<SearchResult> tosortany = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr3 = pagesany.setobj.head;
                 while(ptr3!=null){
-                    tosortany.addElement(new SearchResult(ptr3.data,ptr3.data.getRelevanceOfPage(stra,false, ipi)));
+                    tosortany.addElement(new SearchResult(ptr3.data,ptr3.data.getRelevanceOfPage(stra, false, ipi)));
                     ptr3 = ptr3.next;
                 }
                 ArrayList<SearchResult> alsrany = MySort.sortThisList(tosortany);
@@ -116,7 +116,27 @@ public class SearchEngine {
                 str1 = str1.substring(2);
                 System.out.println(str1);
             break;
-            
+            case "queryFindPagesWhichContainPhrase":
+                str = sc.nextLine();
+                str = str.toLowerCase();
+                stra = str.split(" ",0);
+                MySet<PageEntry> pagesphrase = ipi.getPagesWhichContainPhrase(stra);
+                if(pagesphrase.isEmpty()){
+                    System.out.println("No pages contain this phrase");
+                }
+                MySet<SearchResult> tosortphrase = new MySet<>();
+                MyLinkedList<PageEntry>.Node ptr4 = pagesphrase.setobj.head;
+                while(ptr4!=null){
+                    tosortphrase.addElement(new SearchResult(ptr4.data,ptr4.data.getRelevanceOfPage(stra, true, ipi)));
+                    ptr4 = ptr4.next;
+                }
+                ArrayList<SearchResult> alsr = MySort.sortThisList(tosortphrase);
+                for (int i = 0; i < alsr.size(); i++) {
+                    str1 = str1+", "+alsr.get(i).p.name;
+                }
+                str1 = str1.substring(2);
+                System.out.println(str1);
+            break;
             default:
                 System.out.println("Incorrect Query");
         }
