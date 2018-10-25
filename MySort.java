@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class MySort {
-    public ArrayList<SearchResult> sortThisList(MySet<SearchResult> listOfSortableEntries){
+    public static ArrayList<SearchResult> sortThisList(MySet<SearchResult> listOfSortableEntries){
         ArrayList<SearchResult> al = new ArrayList<>();
         MyLinkedList<SearchResult>.Node ptr = listOfSortableEntries.setobj.head;
         while (ptr!=null) {            
