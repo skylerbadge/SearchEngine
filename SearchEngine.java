@@ -58,11 +58,20 @@ public class SearchEngine {
                     return;
                 }
                 MyLinkedList<PageEntry>.Node ptr = ipi.getPagesWhichContainWord(wordname).setobj.head;
-                while (ptr!=null){
-                    str = str+", "+ptr.data.name;
+                MySet<SearchResult> tosortone = new MySet<>();
+                stra = new String[1];
+                stra[0] = wordname;
+                while(ptr!=null){
+                    tosortone.addElement(new SearchResult(ptr.data,ptr.data.getRelevanceOfPage(stra, false, ipi)));
+//                    System.out.println(ptr.data.name+ptr.data.getRelevanceOfPage(stra, false, ipi));
                     ptr = ptr.next;
+                } 
+                ArrayList<SearchResult> alsrone = MySort.sortThisList(tosortone);
+                for (int i = 0; i < alsrone.size(); i++) {
+                    str1 = str1+", "+alsrone.get(i).p.name;
                 }
-                System.out.println(str.substring(2));
+                str1 = str1.substring(2);
+                System.out.println(str1);
             break;
             
             case "queryFindPositionsOfWordInAPage":
@@ -112,6 +121,7 @@ public class SearchEngine {
                 MyLinkedList<PageEntry>.Node ptr1 = pagesall.setobj.head;
                 while(ptr1!=null){
                     tosortall.addElement(new SearchResult(ptr1.data,ptr1.data.getRelevanceOfPage(stra, false, ipi)));
+//                    System.out.println(ptr1.data.name+ptr1.data.getRelevanceOfPage(stra, false, ipi));
                     ptr1 = ptr1.next;
                 }
                 ArrayList<SearchResult> alsrall = MySort.sortThisList(tosortall);
@@ -135,6 +145,7 @@ public class SearchEngine {
                 MyLinkedList<PageEntry>.Node ptr3 = pagesany.setobj.head;
                 while(ptr3!=null){
                     tosortany.addElement(new SearchResult(ptr3.data,ptr3.data.getRelevanceOfPage(stra, false, ipi)));
+//                    System.out.println(ptr3.data.name+ptr3.data.getRelevanceOfPage(stra, false, ipi));
                     ptr3 = ptr3.next;
                 }
                 ArrayList<SearchResult> alsrany = MySort.sortThisList(tosortany);
@@ -157,8 +168,11 @@ public class SearchEngine {
                 }
                 MySet<SearchResult> tosortphrase = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr4 = pagesphrase.setobj.head;
+//                System.out.println("chdswddeck");
                 while(ptr4!=null){
+//                    System.out.println("check");
                     tosortphrase.addElement(new SearchResult(ptr4.data,ptr4.data.getRelevanceOfPage(stra, true, ipi)));
+//                    System.out.println(ptr4.data.name+ptr4.data.getRelevanceOfPage(stra, true, ipi));
                     ptr4 = ptr4.next;
                 }
                 ArrayList<SearchResult> alsr = MySort.sortThisList(tosortphrase);

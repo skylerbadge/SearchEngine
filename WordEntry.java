@@ -26,6 +26,7 @@ public class WordEntry {
         int ctrw = pe.pi.getWordEntry(word).posavl.numNodes;
         if(ctrw==0)
             return 0.0f;
-        return (((float)ctrw)/((float)pe.getPageIndex().getWordEntries().getSize()));
+//        System.out.println(" IN TF "+word+" N = "+ctrw + "  totw  "+pe.totw);
+        return (((float)ctrw)/((float)pe.totw));
     }
 }

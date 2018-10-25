@@ -4,6 +4,7 @@ public class PageEntry {
     String name;
     PageIndex pi;
     int id=0;
+    int totw;
     
     public PageEntry(String pageName) throws FileNotFoundException{
         name = pageName;
@@ -51,6 +52,7 @@ public class PageEntry {
                 }           
             }
         }
+        totw = swi-1;
     }
     public PageIndex getPageIndex(){
         return pi;
@@ -67,23 +69,34 @@ public class PageEntry {
 //        }//
 //        System.out.println("gag");
         float tf,idf,m,rel = 0;
+        //one word
+        if(str.length==1){
+            tf = (float) getPageIndex().getWordEntry(str[0]).getTermFrequency(str[0]);
+            return tf;
+        }
+      
         if(doTheseWordsRepresentAPhrase){
             m=pi.numPhrase(str);
-            rel = (float) ((m/(pi.getWordEntries().numNodes-((str.length-1)*m)))*Math.log10(ipi.numPages/ipi.getPagesWhichContainPhrase(str).setobj.getSize()));
+            rel = (float) (((float)m/(float)(totw-((str.length-1)*m)))*Math.log((float)ipi.numPages/(float)ipi.getPagesWhichContainPhrase(str).setobj.getSize()));
         }
         else{
             for(int i = 0 ; i<str.length ; i++){
                // System.out.println("sdefed "+str[i]);
                 if(ipi.getPagesWhichContainWord(str[i])==null||getPageIndex().getWordEntry(str[i])==null){
-                    rel = 0;
+                    idf = 0;
+                    tf = 0;
                 }
                 else{
-                    idf = (float) Math.log10(ipi.numPages/ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
+                    idf = (float) Math.log(ipi.numPages/(float)ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
+                    
                     // idf = (float) ((float) Math.log10(ipi.numPages)/Math.log10(ipi.getPagesWhichContainWord(str[i]).setobj.getSize()));
 //                    System.out.println(name+" page "+getPageIndex().getWordEntry(str[i]));
-                    tf = getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
-                    rel = rel + tf*idf;
+                    tf = (float ) getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
+//                    System.out.println("  page  "+name+"  word  "+str[i]+"  tf  "+tf+"  idf  "+idf);
+//                    
+//                    System.out.println("rel   "+ rel);
                 }
+                rel = rel + tf*idf;
             }
         }
         return rel;
