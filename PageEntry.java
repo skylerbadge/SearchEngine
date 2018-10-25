@@ -79,6 +79,7 @@ public class PageEntry {
                 }
                 else{
                     idf = (float) Math.log10(ipi.numPages/ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
+                    // idf = (float) ((float) Math.log10(ipi.numPages)/Math.log10(ipi.getPagesWhichContainWord(str[i]).setobj.getSize()));
 //                    System.out.println(name+" page "+getPageIndex().getWordEntry(str[i]));
                     tf = getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
                     rel = rel + tf*idf;
