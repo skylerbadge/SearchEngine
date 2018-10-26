@@ -9,7 +9,7 @@ public class PageEntry {
     public PageEntry(String pageName) throws FileNotFoundException{
         name = pageName;
         pi = new PageIndex();
-        Scanner psc = new Scanner(new File("./webpagesmine/"+pageName));
+        Scanner psc = new Scanner(new File("./webpages/"+pageName));
         String strn="",w="",str;
         char ch;
         int i,wi=1,swi=1;
