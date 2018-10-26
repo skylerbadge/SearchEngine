@@ -38,7 +38,8 @@ public class InvertedPageIndex {
     public MySet<PageEntry> pagesAnyWord(String words[]){
         MySet<PageEntry> pages = new MySet<>();
         for(int i = 0; i<words.length; i++){
-            pages = pages.union(getPagesWhichContainWord(words[i]));
+            if(getPagesWhichContainWord(words[i])!=null)
+                pages = pages.union(getPagesWhichContainWord(words[i]));
         }
         if(pages.isEmpty())
             return null;
