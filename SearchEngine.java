@@ -32,7 +32,6 @@ public class SearchEngine {
         Scanner sc = new Scanner(actionMessage);
         String action = sc.next();
         String pagename,wordname,str="",str1="", stra[];
-        //WordEntry we;
         HashWord hw;
         
         switch(action){
@@ -79,7 +78,7 @@ public class SearchEngine {
                 wordname = checkPlural(wordname);
                 pagename = sc.next();
                 PageEntry pe = ipi.getPageEntry(pagename);
-                if(pe==null)//e
+                if(pe==null)//exception
                 {
                     System.out.println("No webpage "+pagename+" found");
                     return;
@@ -109,11 +108,9 @@ public class SearchEngine {
                 str = str.toLowerCase();
                 stra = str.split(" ",0);
                 checkPlural(stra);
-//                for (int i = 0; i < stra.length; i++) {
-//                    System.out.println(stra[i]);
-//                }
                 MySet<PageEntry> pagesall = ipi.pagesAllWord(stra);
-                if(pagesall==null||pagesall.isEmpty()){
+                if(pagesall==null||pagesall.isEmpty())//exception
+                {
                     System.out.println("No pages contain all of these words");
                     return;
                 }
@@ -137,7 +134,8 @@ public class SearchEngine {
                 stra = str.split(" ",0);
                 checkPlural(stra);
                 MySet<PageEntry> pagesany = ipi.pagesAnyWord(stra);
-                if(pagesany==null||pagesany.isEmpty()){
+                if(pagesany==null||pagesany.isEmpty())//exception
+                {
                     System.out.println("No pages contain any of these words");
                     return;
                 }
@@ -161,16 +159,13 @@ public class SearchEngine {
                 stra = str.split(" ",0);
                 checkPlural(stra);
                 MySet<PageEntry> pagesphrase = ipi.getPagesWhichContainPhrase(stra);
-//                System.out.println("here");
                 if(pagesphrase==null||pagesphrase.isEmpty()){
                     System.out.println("No pages contain this phrase");
                     return;
                 }
                 MySet<SearchResult> tosortphrase = new MySet<>();
                 MyLinkedList<PageEntry>.Node ptr4 = pagesphrase.setobj.head;
-//                System.out.println("chdswddeck");
                 while(ptr4!=null){
-//                    System.out.println("check");
                     tosortphrase.addElement(new SearchResult(ptr4.data,ptr4.data.getRelevanceOfPage(stra, true, ipi)));
 //                    System.out.println(ptr4.data.name+ptr4.data.getRelevanceOfPage(stra, true, ipi));
                     ptr4 = ptr4.next;

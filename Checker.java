@@ -2,19 +2,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Checker
+public class checker
 {
 	public static void main ( String args [])
 	{
 		BufferedReader br = null;
-		SearchEngine se = new SearchEngine();
+		SearchEngine r = new SearchEngine();
 
 		try {
 			String actionString;
-			br = new BufferedReader(new FileReader("actionsmine.txt"));
+			br = new BufferedReader(new FileReader("actions.txt"));
 
 			while ((actionString = br.readLine()) != null) {
-				se.performAction(actionString);
+				r.performAction(actionString);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -25,7 +25,6 @@ public class Checker
 				ex.printStackTrace();
 			}
 		}
-                //r.print();
 
 	}
 }

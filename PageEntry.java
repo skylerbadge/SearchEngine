@@ -64,10 +64,6 @@ public class PageEntry {
         id = n;
     }
      public float getRelevanceOfPage(String str[], Boolean doTheseWordsRepresentAPhrase, InvertedPageIndex ipi){
-//        for(int i = 0 ; i<str.length ; i++){
-//                System.out.print(" "+str[i]);
-//        }//
-//        System.out.println("gag");
         float tf,idf,m,rel = 0;
         //one word
         if(str.length==1){
@@ -81,7 +77,6 @@ public class PageEntry {
         }
         else{
             for(int i = 0 ; i<str.length ; i++){
-               // System.out.println("sdefed "+str[i]);
                 if(ipi.getPagesWhichContainWord(str[i])==null||getPageIndex().getWordEntry(str[i])==null){
                     idf = 0;
                     tf = 0;
@@ -90,10 +85,9 @@ public class PageEntry {
                     idf = (float) Math.log(ipi.numPages/(float)ipi.getPagesWhichContainWord(str[i]).setobj.getSize());
                     
                     // idf = (float) ((float) Math.log10(ipi.numPages)/Math.log10(ipi.getPagesWhichContainWord(str[i]).setobj.getSize()));
-//                    System.out.println(name+" page "+getPageIndex().getWordEntry(str[i]));
                     tf = (float ) getPageIndex().getWordEntry(str[i]).getTermFrequency(str[i]);
 //                    System.out.println("  page  "+name+"  word  "+str[i]+"  tf  "+tf+"  idf  "+idf);
-//                    
+//                    System.out.println(name+" page "+getPageIndex().getWordEntry(str[i]));
 //                    System.out.println("rel   "+ rel);
                 }
                 rel = rel + tf*idf;

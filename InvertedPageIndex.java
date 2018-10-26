@@ -46,7 +46,6 @@ public class InvertedPageIndex {
     }
     
     public MySet<PageEntry> pagesAllWord(String words[]){
-        //System.out.println(words[0]+" dsss "+words[1]+" sd "+words[2]);
         MySet<PageEntry> pages = getPagesWhichContainWord(words[0]);
         for(int i = 1; i<words.length; i++){
             if(getPagesWhichContainWord(words[i])==null)
@@ -62,7 +61,6 @@ public class InvertedPageIndex {
         MySet<PageEntry> pages = pagesAllWord(str);
         if(pages==null||pages.isEmpty())
             return null;
-//        System.out.println("noo");
         MyLinkedList<PageEntry>.Node ptr = pages.setobj.head;
         MySet<PageEntry> pageswithphrase = new MySet<>();
         while (ptr!=null) {
